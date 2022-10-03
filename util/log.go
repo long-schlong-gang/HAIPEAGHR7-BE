@@ -15,9 +15,8 @@ var fileLog *os.File
 func InitLogger() {
 
 	// Add file logger
-	if GlobalEnvs.LogFile != "" {
-		// Check file can be written to
-		fileLog := glg.FileWriter(GlobalEnvs.LogFile, LogFilePermissions)
+	fileLog = glg.FileWriter(GlobalEnvs.LogFile, LogFilePermissions)
+	if fileLog != nil {
 		glg.Get().
 			AddWriter(fileLog).
 			SetMode(glg.BOTH)
